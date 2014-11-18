@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Titles page</h1>
+
+      <div class="container" ng-controller="TitleController">
+
+    <h2>Titles</h2>
+    <ul>
+        <li ng-repeat="title in titles">{{ title.name }}
+          <a ng-href="" ng-click="deleteTitle(title)">delete</a>
+          <a ng-href="" ng-click="updateTitle(title)">update</a>
+        </li>
+    </ul>
+
+    <h2>Update or Insert Title</h2>
+      <form role="form" name="upsertTitleForm" ng-submit="upsertTitle(title)" novalidate>
+        <br>
+
+        <div class="form-group">
+            <label for="name">Title Name</label>
+            <input type="text" class="form-control" id="title" ng-model="title.name" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" ng-disabled="upsertTitleForm.$invalid">Submit</button>
+    </form>
+
+  </div>
+
+</div>

@@ -1,4 +1,4 @@
-// initialize the app
+ // initialize the app
 angular.module('Exercise6', []);
 
 // main controller
