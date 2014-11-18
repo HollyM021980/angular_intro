@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Angular Exercise 1</title>
+<script src="bower_components/angular/angular.js"></script>
+</head>
+<body ng-app="E2Controller">
+
+<h1>Simple Calculator</h1>
+<p>Create a simple calulator that allows you to add two numbers (hint you may need to use number inputs)</p>
+
+
+<p><input type="number" ng-model="addIt.firstNum"></p>
+<p><input type="number" ng-model="addIt.secondNum"></p>
+
+<h2 ng-init="addIt = {firstNum: 0, secondNum: 0}">
+  Result {{addIt.firstNum + addIt.secondNum}}
+</h2>
+
+
+</body>
+</html>

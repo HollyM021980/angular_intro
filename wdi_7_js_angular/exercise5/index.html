@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Angular Exercise 5</title>
+<script src="bower_components/angular/angular.js"></script>
+</head>
+<body ng-app="Exercise5">
+
+  <div class="container" ng-controller="MainController">
+    <ul>
+        <li ng-repeat="title in titles">{{ title.name }}</li>
+    </ul>
+  </div>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
