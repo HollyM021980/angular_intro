@@ -1,65 +1,65 @@
 <div class="container">
-    <h1>Users page</h1>
+  <h1>Users page</h1>
 
-    <div class="container" ng-controller="UserController">
-      <div class="row">
-        <div class="col-md-8">
-          <h2>User List</h2>
+  <div class="container" ng-controller="UserController">
+    <div class="row">
+      <div class="col-md-8">
+        <h2>User List</h2>
 
-          <table class="table">
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Title</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <body>
-            <!-- The "::"" below prevents 2-way binding -->
-              <tr ng-repeat="user in users">
-                <td>{{::user.first_name}}</td>
-                <td>{{::user.last_name}}</td>
-                <td>{{::user.title.name}}</td>
-                <td><a ng-click="updateUser(user)">update</a> | <a ng-click="deleteUser(user)">delete</a></td>
-              </tr>
-            </body>
-          </table>
-        </div>
-        <div class="col-md-4">
-          <h2>Update or Insert User</h2>
-            <form role="form" name="upsertUserForm" ng-submit="upsertUser(user)" novalidate>
-              <br>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Title</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <body>
+          <!-- The "::"" below prevents 2-way binding -->
+            <tr ng-repeat="user in users">
+              <td>{{::user.first_name}}</td>
+              <td>{{::user.last_name}}</td>
+              <td>{{::user.title.name}}</td>
+              <td><a ng-click="updateUser(user)">update</a> | <a ng-click="deleteUser(user)">delete</a></td>
+            </tr>
+          </body>
+        </table>
+      </div>
+      <div class="col-md-4">
+        <h2>Update or Insert User</h2>
+          <form role="form" name="upsertUserForm" ng-submit="upsertUser(user)" novalidate>
+            <br>
 
-              <div class="form-group">
-                  <label for="name">First Name</label>
-                  <input type="text" class="form-control" id="user" ng-model="user.first_name" required>
+            <div class="form-group">
+                <label for="name">First Name</label>
+                <input type="text" class="form-control" id="user" ng-model="user.first_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Last Name</label>
+                <input type="text" class="form-control" id="user" ng-model="user.last_name" required>
+            </div>
+
+            <div class="form-group">
+              <label>Title</label>
+              <select class="form-control" ng-model="user.title_id" ng-options="title.id as title.name for title in titles">
+              <option value="">Select One</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <div class="checkbox" ng-repeat="skill in skills">
+                <label >
+                  <input type="checkbox" checklist-model="user.skills" checklist-value="skill.id" ng-checked="hasSkill(skill)"> {{skill.name}}
+                </label>
               </div>
+            </div>
 
-              <div class="form-group">
-                  <label for="name">Last Name</label>
-                  <input type="text" class="form-control" id="user" ng-model="user.last_name" required>
-              </div>
-
-              <div class="form-group">
-                <label>Title</label>
-                <select class="form-control" ng-model="user.title_id" ng-options="title.id as title.name for title in titles">
-                <option value="">Select One</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <div class="checkbox" ng-repeat="skill in skills">
-                  <label >
-                    <input type="checkbox" checklist-model="user.skills" checklist-value="skill.id" ng-checked="hasSkill(skill)"> {{skill.name}}
-                  </label>
-                </div>
-              </div>
-
-              <button type="submit" class="btn btn-primary" ng-disabled="upsertUserForm.$invalid">Submit</button>
-          </form>
-        </div>
+            <button type="submit" class="btn btn-primary" ng-disabled="upsertUserForm.$invalid">Submit</button>
+        </form>
       </div>
     </div>
+  </div>
 
 </div>

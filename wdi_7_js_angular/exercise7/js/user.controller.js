@@ -44,12 +44,15 @@ angular.module('StaffingUI').controller('UserController', function($scope, $http
     $scope.hasSkill = function(skill) {
       var isSkill = false;
       // Look at filter for checking if it is in the list
-      for (var i=0, len=$scope.skills.len; i < len; i ++) {
-        if (skill.id === $scope.skills[i].id) {
-          isSkill = true;
-          break;
-        }
+      if (typeof $scope.user !== 'undefined' && typeof $scope.user.skills !== 'undefined') {
+        for (var i=0; i < $scope.user.skills.length; i ++) {
+          if (skill.id === $scope.user.skills[i].id) {
+            isSkill = true;
+            break;
+          }
+        };
       };
+      return isSkill;
     };
 
 });
