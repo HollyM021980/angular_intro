@@ -28,17 +28,21 @@ angular.module('StaffingUI').controller('UserController', function($scope, $http
     $scope.deleteUser = function(user) {
       $http.delete('http://localhost:3000/users/' + user.id)
         .success(function(response) {
-          for (var i=0; i < $scope.users.length; i++) {
-            if ($scope.users[i].id == user.id) {
-              $scope.users.splice(i, 1);
-            };
-          };
+          $scope.removeUser(user.id);
         });
       $scope.users = UserFactory.users;
     };
 
     $scope.updateUser = function(user) {
       $scope.user = user;
+    };
+
+    $scope.removeUser = function(id) {
+      for (var i=0; i < $scope.users.length; i++) {
+        if ($scope.users[i].id === user.id) {
+          $scope.users.splice(i, 1);
+        };
+      };
     };
 
     $scope.hasSkill = function(skill) {
@@ -54,5 +58,20 @@ angular.module('StaffingUI').controller('UserController', function($scope, $http
       };
       return isSkill;
     };
+
+  $scope.toggleSkillSelection = function(skill) {
+    debugger;
+    // toggle selection for a given skill
+     var idx = $scope.user.skills.indexOf(skill);
+
+     // remove if skill is currently selected
+     if (idx > -1) {
+       $scope.user.skills.splice(idx, 1);
+     }
+     // add if skill is newly selected
+     else {
+       $scope.user.skills.push(skill);
+     }
+  };
 
 });

@@ -49,7 +49,7 @@
           <div class="form-group">
             <div class="checkbox" ng-repeat="skill in skills">
               <label >
-                <input type="checkbox" checklist-model="user.skills" checklist-value="skill.id" ng-checked="hasSkill(skill)"> {{skill.name}}
+                <input type="checkbox" checklist-model="user.skills" checklist-value="skill.id" ng-checked="hasSkill(skill)" ng-click="toggleSkillSelection(skill)"> {{skill.name}}
               </label>
             </div>
           </div>
