@@ -48,9 +48,9 @@
 
           <div class="form-group">
             <div class="checkbox" ng-repeat="skill in skills">
-              <label >
-                <input type="checkbox" value="{{ skill.id }}" ng-model="skill.checked" ng-checked="hasSkill(skill)"> {{skill.name}}
-              </label>
+               <label >
+                <input type="checkbox" value="{{ skill.id }}" ng-checked="userHasSkill(skill)">{{ skill.name }}
+               </label>
             </div>
           </div>
 
