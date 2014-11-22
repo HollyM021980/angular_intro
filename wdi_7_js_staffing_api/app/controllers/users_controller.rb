@@ -1,4 +1,20 @@
 class UsersController < ApplicationController
+  # POST /login
+  def login
+    user = User.find_by_email(params[:email])
+
+    if user && user.authenticate(params[:password])
+      render json: {"token" => user.token}
+    else
+      head :unauthorized
+    end
+  end
+
+  # GET /logout
+  def logout
+    head :ok
+  end
+
   # GET /users
   # GET /users.json
   def index
@@ -49,8 +65,7 @@ class UsersController < ApplicationController
   end
 
   private
-
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :role, :title_id, skills_ids: [])
+      params.require(:user).permit(:first_name, :last_name, :role, :title_id, :skill_ids, :email, :password, :password_confirmation, :token)
     end
 end
