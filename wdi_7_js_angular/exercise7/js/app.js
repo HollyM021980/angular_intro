@@ -1,53 +1,32 @@
 // initialize the app
 angular.module('StaffingUI', [
     'ngRoute'
-]);
+]).run(function(
+    $rootScope,
+    $location,
+    $http,
+    $window,
+    AuthFactory,
+    UserFactory,
+    TitleFactory,
+    SkillFactory
+) {
+    $rootScope.$on('$routeChangeStart', function(event, next) {
+        if (AuthFactory.isAuthenticated()) {
+            if (AuthFactory.isAuthenticated()) {
+                $http.defaults.headers.common['Authorization'] = 'Token token=' + $window.sessionStorage.getItem('staffingUI.user');
+            }
 
-angular.module('StaffingUI').run(function(UserFactory, TitleFactory, SkillFactory) {
-    UserFactory.fetch();
-    TitleFactory.fetch();
-    SkillFactory.fetch();
-});
-
-
-angular.module('StaffingUI').config(function($routeProvider) {
-    'use strict';
-
-    $routeProvider
-        .when('/', {
-            templateUrl: 'templates/home.html'
-        })
-        .when('/users', {
-            templateUrl: 'templates/users.html'
-        })
-        .when('/titles', {
-            templateUrl: 'templates/titles.html'
-        })
-        .when('/about', {
-            templateUrl: 'templates/about.html'
-        })
-        .when('/contact', {
-            templateUrl: 'templates/contact.html'
-        })
-        .otherwise({
-            redirectTo: '/'
-        });
-});
-
-angular.module('StaffingUI').directive('hmModal', function() {
-    return {
-        restrict: 'E',
-
-        transclude: true,
-
-        templateUrl: 'templates/partials/modal.html',
-
-        scope: {
-            title: '@',
-            uid: '@'
+            UserFactory.fetch();
+            TitleFactory.fetch();
+            SkillFactory.fetch();
+        } else {
+            $location.path('/login');
         }
-    };
+    });
 });
+
+
 
 
 

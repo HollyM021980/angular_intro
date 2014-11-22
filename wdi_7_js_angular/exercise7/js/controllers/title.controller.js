@@ -1,5 +1,5 @@
 // title controller
-angular.module('StaffingUI').controller('TitleController', function($scope, $http, TitleFactory) {
+angular.module('StaffingUI').controller('TitleCtrl', function($scope, $http, ServerUrl, TitleFactory) {
     'use strict';
 
     $scope.titles = TitleFactory.titles;
@@ -10,9 +10,9 @@ angular.module('StaffingUI').controller('TitleController', function($scope, $htt
       };
 
       if (title.id) {
-        $http.put('http://localhost:3000/titles/' + title.id, params);
+        $http.put(ServerUrl + 'titles/' + title.id, params);
       } else {
-        $http.post('http://localhost:3000/titles', params)
+        $http.post(ServerUrl + 'titles', params)
           .success(function(response) {
             $scope.titles.push(response);
         });
@@ -21,7 +21,7 @@ angular.module('StaffingUI').controller('TitleController', function($scope, $htt
     };
 
     $scope.deleteTitle = function(title) {
-      $http.delete('http://localhost:3000/titles/' + title.id)
+      $http.delete(ServerUrl + 'titles/' + title.id)
         .success(function(response) {
           for (var i=0; i < $scope.titles.length; i++) {
             if ($scope.titles[i].id == title.id) {
